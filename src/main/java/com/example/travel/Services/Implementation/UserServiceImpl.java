@@ -37,9 +37,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String updateAdminUser(User user, Integer id) {
+        User oldUser = userRepository.findById(id).orElseThrow(()->new EntityNotFoundException("User not found"));
+        if(user.getName()!=null){
+            oldUser.setName(user.getName());
+        }
+        if(user.getEmail()!=null){
+            oldUser.setEmail(user.getEmail());
+        }
+        if(user.getRole()!=null){
+            oldUser.setRole(user.getRole());
+        }
+        if(user.getPassword()!=null){
+            oldUser.setPassword(user.getPassword());
+        }
+        userRepository.save(oldUser);
+        return "success";
+    }
+
+    @Override
     public String updateUser(User user, Integer id) {
+        User oldUser = userRepository.findById(id).orElseThrow(()->new EntityNotFoundException("User not found"));
+        if(user.getName()!=null){
+            oldUser.setName(user.getName());
+        }
+        if(user.getEmail()!=null){
+            oldUser.setEmail(user.getEmail());
+        }
+        if(user.getPassword()!=null){
+            oldUser.setPassword(user.getPassword());
+        }
+        userRepository.save(oldUser);
         return "";
     }
+
 
     @Override
     public String deleteUser(Integer id) {

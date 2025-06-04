@@ -60,9 +60,9 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody User user) {
+    public ResponseEntity<?> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
         Map<String,String> response = new HashMap<>();
-        String result = userService.updateUser(user,id);
+        String result = userService.updateAdminUser(user,id);
         if(result.equals("success")) {
             response.put("message", "User updated successfully");
         }
