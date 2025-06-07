@@ -59,6 +59,19 @@ public class UserController {
         return ResponseEntity.ok().body(response);
     }
 
+    @PutMapping("/profil/{id}")
+    public ResponseEntity<?> updateProfil(@PathVariable("id") Integer id, @RequestBody User user) {
+        Map<String,String> response = new HashMap<>();
+        String result = userService.updateUser(user,id);
+        if(result.equals("success")) {
+            response.put("message", "User updated successfully");
+        }
+        else {
+            response.put("message", "Error updating user");
+        }
+        return ResponseEntity.ok().body(response);
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
         Map<String,String> response = new HashMap<>();
