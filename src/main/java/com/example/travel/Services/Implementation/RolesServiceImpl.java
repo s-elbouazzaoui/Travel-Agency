@@ -61,7 +61,7 @@ public class RolesServiceImpl implements RolesService {
         if(role.getLibelle()!=null) {
             oldRole.setLibelle(role.getLibelle());
         }
-        if(oldRole.getDescription()!=null) {
+        if(role.getDescription()!=null) {
             oldRole.setDescription(role.getDescription());
         }
         rolesRepository.save(oldRole);
