@@ -1,0 +1,48 @@
+
+.parent {
+  height: 800px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 11px;
+}
+
+
+.div2 {
+  height: 800px;
+  text-align: center;
+  border: black solid 1px;
+  padding: 10px;
+  grid-column: span 2 / span 2;
+  grid-row: span 5 / span 5;
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.div3 {
+  height: 800px;
+  text-align: center;
+  border: black solid 1px;
+  padding: 10px;
+
+  grid-column: span 2 / span 2;
+  grid-row: span 6 / span 6;
+  grid-column-start: 3;
+}
+
+.div4 {
+  height: 800px;
+  text-align: center;
+  border: black solid 1px;
+  padding: 10px;
+  grid-column: span 2 / span 2;
+  grid-row: span 2 / span 2;
+  grid-column-start: 5;
+}
+
+
+
