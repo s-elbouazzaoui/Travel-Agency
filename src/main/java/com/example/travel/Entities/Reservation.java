@@ -21,7 +21,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime dateReservation;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     private Long montant;
     private Integer nombrePlace;
     private LocalDateTime dateModification;
