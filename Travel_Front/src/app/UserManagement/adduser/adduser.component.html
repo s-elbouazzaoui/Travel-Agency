@@ -13,7 +13,7 @@
   <form (ngSubmit)="addUser(userForm)" #userForm="ngForm" novalidate autocomplete="off">
     <div class="form-group">
       <label>Nom <span style="color: red; font: bold;">*</span></label>
-      <input type="text" required name="nom" [(ngModel)]="user.name">
+      <input type="text" required name="name" [(ngModel)]="user.name">
     </div>
 
     <div class="form-group">
@@ -39,7 +39,7 @@
     </div>
     <div class="form-group">
       <label>Confirm Password <span style="color: red; font: bold;">*</span></label>
-      <input type="password" required id="confirmId" name="confirm_password"[(ngModel)]="passwordConfirm">
+      <input type="password" required id="confirmId" name="confirm_password" [(ngModel)]="passwordConfirm">
     </div>
     <div class="center">
       <button class="btn-submit"><i class="bi bi-bookmark-check">Submit</i></button>

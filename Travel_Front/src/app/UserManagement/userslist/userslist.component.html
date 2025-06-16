@@ -19,23 +19,24 @@
       <table >
         <thead>
         <th>Identifiant</th>
-        <th>Nom</th>
-        <th>Prenom</th>
-        <th>email</th>
-        <th>role</th>
+        <th>Nom complet</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Date de creation</th>
         <th>delete</th>
         <th>update</th>
         </thead>
         <tbody>
         <tr *ngFor="let user of users">
 
-          <td>{{user.userId}}</td>
-          <td>{{user.nom}}</td>
-          <td>{{user.prenom}}</td>
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
           <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
-          <td><button class="action-button"><i class="bi bi-trash" (click)="openModal(confirmModal,user.userId)"></i></button></td>
-          <td><button class="action-button" (click)="navigateToUpdate(user.userId)"><i class="bi bi-pencil-square"></i></button></td>
+          <td *ngIf="user.role.id==1">Administrateur</td>
+          <td *ngIf="user.role.id==2">Utilisateur</td>
+          <td>{{user.created}}</td>
+          <td><button class="action-button"><i class="bi bi-trash" (click)="openModal(confirmModal,user.id)"></i></button></td>
+          <td><button class="action-button" (click)="navigateToUpdate(user.id)"><i class="bi bi-pencil-square"></i></button></td>
         </tr>
         </tbody>
       </table>
