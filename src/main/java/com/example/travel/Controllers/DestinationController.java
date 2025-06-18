@@ -19,6 +19,8 @@ import java.util.Map;
 @RestController
 @Validated
 @RequestMapping("/api/destinations")
+
+@CrossOrigin(origins = "http://localhost:4040")
 public class DestinationController {
 
     private final DestinationService destinationService;
