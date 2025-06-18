@@ -6,12 +6,14 @@ import {NgForOf} from '@angular/common';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ToastrService} from 'ngx-toastr';
 import {RoleServiceService} from '../../Services/AdminServices/role-service.service';
+import {SidenavComponent} from '../../../lib/sidenav/sidenav.component';
 
 @Component({
   selector: 'app-roleslist',
   imports: [
     RouterLink,
-    NgForOf
+    NgForOf,
+    SidenavComponent
   ],
   templateUrl: './roleslist.component.html',
   styleUrl: './roleslist.component.scss'
@@ -19,6 +21,7 @@ import {RoleServiceService} from '../../Services/AdminServices/role-service.serv
 export class RoleslistComponent implements OnInit {
   roles: Roles[] = [];
   roleId!: number;
+  contentMove=false
 
   modalRef?: BsModalRef
 

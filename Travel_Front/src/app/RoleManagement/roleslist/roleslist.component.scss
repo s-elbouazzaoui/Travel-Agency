@@ -16,14 +16,18 @@
   transition: margin-left 0.3s ease-in-out;
 }
 
-//app-navbar2:hover + .main-content {
-//  margin-left: 250px;
-//}
-//
-//app-navbar2:hover + .main-content .navbar {
-//  left: 250px;
-//}
 
+app-sidenav.expanded + .main-content .navbar  {
+  left: 300px;
+}
+app-sidenav.expanded + .main-content .parent {
+  margin-left: 230px; /* Adjust this value as needed */
+  transition: margin-left 0.3s ease 0.1s;
+}
+
+.parent{
+  transition: margin-left 0.3s ease-in-out;
+}
 /* Navbar Styling */
 .navbar {
   position: fixed;
