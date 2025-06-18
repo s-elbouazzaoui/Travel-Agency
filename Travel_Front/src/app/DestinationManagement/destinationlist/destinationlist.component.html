@@ -1,0 +1,44 @@
+
+  <app-sidenav (click)="contentMove=!contentMove" [class.expanded]="contentMove"></app-sidenav>
+  <div class="main-content">
+    <nav class="navbar">
+      <span>Welcome Costumer</span>
+      <form class="form-inline">
+        <input
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="searchtext"
+          [(ngModel)]="searchtext"
+          style="border-radius: 25px; margin-right: 10px; margin-bottom: 2px;">
+        <i class="bi bi-search" style="font-size: 25px;"></i>
+      </form>
+    </nav>
+
+
+
+    <div class="parent">
+      <div *ngFor="let des of destinations|filter:searchtext">
+        <div class="card" style="width: 20rem; background-color: gray">
+          <img [src]="'http://localhost:8080/images/' + des.image" class="card-img-top"  alt="...">
+          <div class="card-body">
+            <div style="display: flex;justify-content: space-between ">
+              <h5 class="card-title">{{des.lieu}}</h5>
+              <p style="font-weight: bold">Prix : {{des.prix}}</p>
+            </div>
+            <h5 class="card-title">{{des.lieu}}</h5>
+            <p>Type de voyage : {{des.typeVoyage}}</p>
+            <p class="card-text">Des le {{des.dateDebut}} jusqu'a {{des.dateFin}}</p>
+            <p>{{des.description}}</p>
+            <p>Nombre de places disponible : {{des.nombrePlace}}</p>
+
+          </div>
+          <div style="display: flex; justify-content: center; padding: .75rem 1rem;">
+            <app-button-booking [label]="'booking'"></app-button-booking>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>

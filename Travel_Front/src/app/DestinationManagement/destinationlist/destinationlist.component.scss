@@ -1,0 +1,87 @@
+.parent {
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 19px;
+  grid-row-gap: 5px;
+  transition: margin-left 0.3s ease-in-out;
+
+}
+
+.parent .card img {
+  display: block;
+  transition: transform 0.3s ease;
+  transform-origin: center center;
+
+}
+
+/* 3) on hover zoom & lift */
+.parent .card img:hover {
+  transform: scale(1.4) translateY(15px);
+  z-index: 1000;
+}
+
+
+:host ::ng-deep .card-img, .card-img-top, .card-img-bottom {
+  width: 85% !important;
+  height: 250px !important;
+  text-align: center;
+  margin-left: 25px;
+  margin-top: 5px;
+}
+
+
+app-sidenav.expanded + .main-content .navbar  {
+  left: 300px;
+}
+app-sidenav.expanded + .main-content .parent {
+  margin-left: 230px; /* Adjust this value as needed */
+  transition: margin-left 0.3s ease 0.1s;
+}
+
+
+
+
+.main-content {
+  margin-top: 80px;
+  margin-left: 80px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 5px;
+  left: 80px;
+  right: 5px;
+  background-color: #e3f2fd;
+  border-radius: 15px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  transition: left 0.3s ease 0.1s;
+}
+
+.navbar .form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.navbar input[type="search"] {
+  border-radius: 25px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+
+.navbar i {
+  font-size: 25px;
+}
+
+/* Right Button Section */
+.right {
+  text-align: right;
+  margin-right: 10px;
+}

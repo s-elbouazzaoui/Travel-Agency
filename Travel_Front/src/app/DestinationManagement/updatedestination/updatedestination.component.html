@@ -9,7 +9,7 @@
 <div class="form-container">
   <h2>Destination Details</h2>
   <p>Fill all the required fields to proceed</p>
-  <form (ngSubmit)="addDestination(destinationForm)" #destinationForm="ngForm" novalidate autocomplete="off">
+  <form (ngSubmit)="updateDestination(destinationForm)" #destinationForm="ngForm" novalidate autocomplete="off">
     <div class="form-group">
       <label>Nom du destination <span style="color: red; font: bold;">*</span></label>
       <input type="text" required name="nom" [(ngModel)]="destination.nom">
@@ -32,7 +32,7 @@
     </div>
     <div class="form-group">
       <label>Date de debut <span style="color: red; font: bold;">*</span></label>
-<!--      <input type="date" required name="dateDebut" [(ngModel)]="destination.dateDebut">-->
+      <!--      <input type="date" required name="dateDebut" [(ngModel)]="destination.dateDebut">-->
 
       <div class="col-xs-12 col-12 col-md-4 form-group mb-3" style="font-family: 'Segoe UI'">
         <input type="text"
@@ -43,14 +43,14 @@
                name="dateDebut"
                [bsConfig]="dateFormat"
                [(ngModel)]="destination.dateDebut"
-              >
+        >
       </div>
 
 
     </div>
     <div class="form-group">
       <label>Date de fin <span style="color: red; font: bold;">*</span></label>
-<!--      <input type="date" required name="dateFin" [(ngModel)]="destination.dateFin">-->
+      <!--      <input type="date" required name="dateFin" [(ngModel)]="destination.dateFin">-->
       <div class="col-xs-12 col-12 col-md-4 form-group mb-3" style="font-family: 'Segoe UI'">
         <input type="text"
                style="width: 300%"
@@ -69,11 +69,11 @@
     </div>
     <div class="form-group">
       <label>Description <span style="color: red; font: bold;">*</span></label>
-      <input type="text" required id="description" name="nombrePlace" [(ngModel)]="destination.description" >
+      <input type="text" required id="description" name="description" [(ngModel)]="destination.description" >
     </div>
     <div class="center">
       <button class="btn-submit" type="submit"><i class="bi bi-bookmark-check">Submit</i></button>
-      <button style="margin-left: 10px;" class="btn-submit" type="button"><i class="bi bi-bookmark-dash" routerLink="/products">Cancel</i></button>
+      <button style="margin-left: 10px;" class="btn-submit" type="button"><i class="bi bi-bookmark-dash" routerLink="/destinations-admin">Cancel</i></button>
     </div>
   </form>
 </div>
