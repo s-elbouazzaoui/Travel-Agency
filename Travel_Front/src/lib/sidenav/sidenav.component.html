@@ -1,16 +1,24 @@
-<div class="sidenav_opener" (click)="sidebarShow=!sidebarShow">
-  <button class="button" [class.expanded]="sidebarShow"><i class="bi bi-list" style="font-size: 40px;cursor: pointer "></i></button>
-</div>
-
-<!--<div class="sidenav" [class.slider]="sidebarShow">-->
-<!--  <div class="sidenav_close"-->
-<!--       (click)="sidebarShow = !sidebarShow">-->
-<!--    <i class="bi bi-list" style="font-size: 40px;cursor: pointer "></i>-->
-<!--  </div>-->
-
-
-  <div class="sidenav_content">
-    <h2> Travel Agency</h2>
-
+<div>
+  <div class="sidenav_opener" (click)="sidebarShow=!sidebarShow" >
+    <button class="button" [class.expanded]="sidebarShow">
+      <i class="bi bi-list" style="font-size: 40px;cursor: pointer"></i>
+    </button>
   </div>
-<!--</div>-->
+
+  <div class="sidenav" [class.slider]="sidebarShow" (click)="sidebarShow = !sidebarShow">
+    <div class="sidenav_close" >
+      <i class="bi bi-list" style="font-size: 40px;cursor: pointer"></i>
+    </div>
+    <div class="sidenav_content">
+      <h2>Travel Agency</h2>
+      <p routerLink="/home">Home</p>
+      <p routerLink="/users">Users</p>
+      <p routerLink="/destinations">Destinations</p>
+      <p routerLink="/roles">Roles</p>
+      <p routerLink="/home">Home</p>
+      <p routerLink="/home">Home</p>
+      <p routerLink="/home">Home</p>
+
+    </div>
+  </div>
+</div>
