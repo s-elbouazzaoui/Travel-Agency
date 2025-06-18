@@ -1,8 +1,9 @@
 <div class="list-container">
 
+  <app-sidenav (click)="contentMove=!contentMove" [class.expanded]="contentMove"></app-sidenav>
   <div class="main-content">
     <nav class="navbar">
-      <span>Welcome Admin</span>
+      <span>Welcome Costumer</span>
       <form class="form-inline">
         <input
           type="search"
@@ -15,7 +16,7 @@
     <div class="right">
       <button class="adduser" routerLink="/adduser"><i class="bi bi-person-plus"> add a new user</i></button>
     </div>
-    <div style="margin-right: 10px;">
+    <div class="parent" style="margin-right: 10px;">
       <table >
         <thead>
         <th>Identifiant</th>

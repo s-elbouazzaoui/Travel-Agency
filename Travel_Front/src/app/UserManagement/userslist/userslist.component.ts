@@ -5,6 +5,7 @@ import {NgForOf, NgIf} from '@angular/common';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ToastrService} from 'ngx-toastr';
 import {UserserviceAdminService} from '../../Services/AdminServices/userservice-admin.service';
+import {SidenavComponent} from '../../../lib/sidenav/sidenav.component';
 // import { BsModalService,BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -12,7 +13,8 @@ import {UserserviceAdminService} from '../../Services/AdminServices/userservice-
   imports: [
     RouterLink,
     NgForOf,
-    NgIf
+    NgIf,
+    SidenavComponent
   ],
   templateUrl: './userslist.component.html',
   styleUrl: './userslist.component.scss'
@@ -22,6 +24,7 @@ export class UserslistComponent implements OnInit {
   userId!: number;
 
   modalRef?: BsModalRef
+  contentMove=false;
 
   constructor(private router: Router, private modalService: BsModalService,private toast:ToastrService,private userService: UserserviceAdminService) {
   }
