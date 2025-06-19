@@ -1,0 +1,80 @@
+<div class="list-container">
+
+  <app-sidenav (click)="contentMove=!contentMove" [class.expanded]="contentMove"></app-sidenav>
+  <div class="main-content">
+    <nav class="navbar">
+      <span>Welcome Costumer</span>
+      <form class="form-inline">
+        <input
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="searchtext"
+          [(ngModel)]="searchtext"
+          style="border-radius: 25px; margin-right: 10px; margin-bottom: 2px;">
+        <i class="bi bi-search" style="font-size: 25px;"></i>
+      </form>
+    </nav>
+    <div class="right">
+      <button class="adduser" (click)="addOffre()"><i class="bi bi-person-plus"> add a new offre</i></button>
+    </div>
+    <div class="parent" style="margin-right: 10px;">
+      <table >
+        <thead>
+        <th>Identifiant</th>
+        <th>Libellé</th>
+        <th>Destination</th>
+        <th>Date de debut</th>
+        <th>Date de fin</th>
+        <th>Nombre de places</th>
+        <th>Pourcentage de reduction</th>
+        <th>delete</th>
+        <th>update</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let offre of offres|filter:searchtext ">
+
+          <td>{{offre.id}}</td>
+
+          <td>{{offre.libelle}}</td>
+          <td>{{offre.destination.lieu}}</td>
+          <td>{{offre.dateDebut}}</td>
+          <td>{{offre.dateFin}}</td>
+          <td>{{offre.nombrePlace}}</td>
+          <td>{{offre.pourcentage}} %</td>
+
+          <td><button class="action-button"><i class="bi bi-trash" (click)="openModal(confirmModal,offre.id)"></i></button></td>
+          <td><button class="action-button" (click)="navigateToUpdate(offre.id)"><i class="bi bi-pencil-square"></i></button></td>
+
+
+
+          <!--          <td><button class="action-button" ><i class="bi bi-pencil-square" (click)="openUpdateModal(p.productId,updateModal)"></i></button></td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+<ng-template #confirmModal>
+  <div class="modal-body">
+    <h4>Are you sure you want to proceed?</h4>
+    <div class="d-flex justify-content-end" style="margin-bottom: 10px;">
+      <button class="btn btn-danger" style="margin-right: 10px;" (click)="confirmAction()" >Yes, Proceed</button>
+      <button class="btn btn-secondary" (click)="cancelAction()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
+
+
