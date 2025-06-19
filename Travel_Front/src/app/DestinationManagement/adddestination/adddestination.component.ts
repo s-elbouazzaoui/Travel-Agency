@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {Destination} from '../../Models/Destination.model';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {BsDatepickerConfig, BsDatepickerDirective, BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {ToastrService} from 'ngx-toastr';
 import {DestinationService} from '../../Services/AdminServices/destination.service';
@@ -13,7 +13,8 @@ import {DestinationService} from '../../Services/AdminServices/destination.servi
   imports: [
     FormsModule,
     BsDatepickerDirective,
-    BsDatepickerModule
+    BsDatepickerModule,
+    RouterLink
 
 
   ],
@@ -105,6 +106,7 @@ export class AdddestinationComponent implements OnInit {
       this.toast.warning("Please fill all the required fields");
     }
   }
+
 
 
   ngOnInit(): void {
