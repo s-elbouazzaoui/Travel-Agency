@@ -92,6 +92,10 @@ export class DestinationlistAdminComponent implements OnInit {
     this.router.navigate(['/update-destination', id])
   }
 
+  addOffre(id:number){
+
+    this.router.navigate(['/addoffre', id])
+  }
   ngOnInit(): void {
     this.loadDestinations();
   }

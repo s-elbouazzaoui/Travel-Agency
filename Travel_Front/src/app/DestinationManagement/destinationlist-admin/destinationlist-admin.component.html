@@ -31,6 +31,7 @@
         <th>Prix</th>
         <th>delete</th>
         <th>update</th>
+        <th>Create offer</th>
         </thead>
         <tbody>
         <tr *ngFor="let des of destinations|filter:searchtext ">
@@ -45,6 +46,7 @@
           <td>{{des.prix}}</td>
           <td><button class="action-button"><i class="bi bi-trash" (click)="openModal(confirmModal,des.id)"></i></button></td>
           <td><button class="action-button" (click)="navigateToUpdate(des.id)"><i class="bi bi-pencil-square"></i></button></td>
+          <td><button class="action-button" (click)="addOffre(des.id)"><i class="bi bi-patch-plus"></i></button></td>
 
 
 
