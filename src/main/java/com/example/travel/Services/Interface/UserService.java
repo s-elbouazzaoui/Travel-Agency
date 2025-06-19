@@ -12,6 +12,8 @@ public interface UserService {
     public List<User> getAllUsers();
     public User getUser(Integer id);
 
+    public User getUserLogs(String email,String password);
+
 
 
 }

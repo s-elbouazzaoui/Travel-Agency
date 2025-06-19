@@ -88,4 +88,15 @@ public class UserServiceImpl implements UserService {
     public User getUser(Integer id) {
         return userRepository.findById(id).orElseThrow(()->new EntityNotFoundException("error"));
     }
+
+    @Override
+    public User getUserLogs(String email, String password) {
+        User user = userRepository.getUserLogin(email, password);
+        if(user==null){
+            throw new EntityNotFoundException("User not found");
+        }
+        else{
+            return user;
+        }
+    }
 }

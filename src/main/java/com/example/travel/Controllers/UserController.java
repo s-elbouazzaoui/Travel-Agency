@@ -46,6 +46,18 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
+    @GetMapping("/logs")
+    public ResponseEntity<User> getUserLogs(@RequestParam String email, @RequestParam String password) {
+
+        User user = userService.getUserLogs(email, password);
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok().body(user);
+        }
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> addUser(@RequestBody User user) {
         Map<String,String> response = new HashMap<>();
