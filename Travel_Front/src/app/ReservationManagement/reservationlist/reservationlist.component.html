@@ -1,0 +1,98 @@
+<div class="list-container">
+
+  <app-user-side-bar (click)="contentMove=!contentMove" [class.expanded]="contentMove"></app-user-side-bar>
+  <div class="main-content">
+    <nav class="navbar">
+      <span>Welcome Costumer</span>
+      <form class="form-inline">
+        <input
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="searchtext"
+
+          style="border-radius: 25px; margin-right: 10px; margin-bottom: 2px;">
+        <i class="bi bi-search" style="font-size: 25px;"></i>
+      </form>
+    </nav>
+    <div class="right">
+      <button class="adduser" routerLink="/destinations"><i class="bi bi-person-plus"> add a new reservation</i></button>
+    </div>
+    <div class="parent" style="margin-right: 10px;">
+      <table >
+        <thead>
+        <th>Identifiant</th>
+        <th>Date de reservation</th>
+        <th>Destination ID</th>
+        <th>Nombre de places</th>
+        <th>Montant total</th>
+        <th>Status</th>
+        <th>Offre ID</th>
+        <th>delete</th>
+        <th>update</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let res of reservations " >
+          <td >{{res.id}}</td>
+
+          <td>{{res.dateReservation}}</td>
+          <td>{{res.destination.id}}</td>
+          <td>{{res.nombrePlace}}</td>
+          <td>{{res.montant}}</td>
+          <td>{{res.status}}</td>
+          <td *ngIf="res.offre?.id==null">none </td>
+          <td *ngIf="res.offre?.id!=null">{{res.offre?.id}} </td>
+
+          <td>
+            <button class="action-button"
+                    [disabled]="res.status === 'REJECTED' || res.status === 'CANCELLED' || res.status==='APPROVED' "
+                    [ngStyle]="{ 'color': (res.status === 'REJECTED' || res.status === 'CANCELLED' || res.status==='APPROVED') ? 'gray' : '' }"
+                    (click)="openModal(confirmModal, res.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+
+          <td>
+            <button class="action-button"
+                    [disabled]="res.status === 'REJECTED' || res.status === 'CANCELLED' || res.status==='APPROVED'"
+                    [ngStyle]="{ 'color': (res.status === 'REJECTED' || res.status === 'CANCELLED' || res.status==='APPROVED') ? 'gray' : '' }"
+                    (click)="navigateToUpdate(res.id)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </td>
+
+
+
+
+
+          <!--          <td><button class="action-button" ><i class="bi bi-pencil-square" (click)="openUpdateModal(p.productId,updateModal)"></i></button></td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+<ng-template #confirmModal>
+  <div class="modal-body">
+    <h4>Are you sure you want to proceed?</h4>
+    <div class="d-flex justify-content-end" style="margin-bottom: 10px;">
+      <button class="btn btn-danger" style="margin-right: 10px;" (click)="confirmAction()" >Yes, Proceed</button>
+      <button class="btn btn-secondary" (click)="cancelAction()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
+
+
+<!---->
