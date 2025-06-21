@@ -10,6 +10,6 @@ export class Reservation{
    dateModification!:string;
    user!:EntityRef;
    destination!:EntityRef;
-   offre!:EntityRef;
+   offre!:EntityRef|null;
 
 }

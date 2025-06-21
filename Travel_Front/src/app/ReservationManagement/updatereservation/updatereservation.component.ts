@@ -3,7 +3,7 @@ import {Reservation} from '../../Models/Reservation.model';
 import {Offre} from '../../Models/Offre.model';
 import {Destination} from '../../Models/Destination.model';
 import {OffreServiceService} from '../../Services/AdminServices/offre-service.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {DestinationService} from '../../Services/AdminServices/destination.service';
 import {ToastrService} from 'ngx-toastr';
 import {ReservationService} from '../../Services/AdminServices/reservation.service';
@@ -15,7 +15,8 @@ import {NgForOf} from '@angular/common';
   selector: 'app-updatereservation',
   imports: [
     FormsModule,
-    NgForOf
+    NgForOf,
+    RouterLink
   ],
   templateUrl: './updatereservation.component.html',
   styleUrl: './updatereservation.component.scss'
@@ -73,6 +74,7 @@ export class UpdatereservationComponent implements OnInit {
           this.onOfferSelect();
         }
         else
+          this.reservation.montant = data.montant
           this.selectedOffre = null
       }
 

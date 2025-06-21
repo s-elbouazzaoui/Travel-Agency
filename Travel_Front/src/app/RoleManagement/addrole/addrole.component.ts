@@ -18,6 +18,7 @@ export class AddroleComponent implements OnInit{
 
 
   role :Roles = new Roles();
+  roleId:any
 
 
 
@@ -61,7 +62,15 @@ export class AddroleComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.toast.info("the red * marks a required fields","",)
+    this.roleId = sessionStorage.getItem('userRole')
+    if (this.roleId==='1'){
+      this.toast.info("the red * marks a required fields","",)
+    }
+    else{
+      this.router.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
+
   }
 
 }

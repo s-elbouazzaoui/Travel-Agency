@@ -16,7 +16,6 @@ import {UserSideBarComponent} from '../../../lib/user-side-bar/user-side-bar.com
     FormsModule,
     NgForOf,
     ReactiveFormsModule,
-    SidenavComponent,
     NgIf,
     NgStyle,
     UserSideBarComponent,
@@ -74,6 +73,15 @@ export class ReservationlistComponent implements OnInit{
 
   navigateToUpdate(id: number) {
     this.router.navigate(['/update-reservation', id])
+  }
+
+  cancel(id:number){
+    this.resService.cancelRes(id).subscribe({
+      next:()=>{
+        this.toast.warning("Reservation canceled")
+        this.loadRes(this.userId)
+      }
+    })
   }
 
 

@@ -19,6 +19,7 @@ export class AdduserComponent implements OnInit{
   user :User = new User();
   passwordConfirm !:string;
   isUser:boolean=false;
+  roleId:any
 
 
 
@@ -85,7 +86,17 @@ export class AdduserComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.toast.info("the red * marks a required fields","",)
+    this.roleId = sessionStorage.getItem('userRole')
+    if (this.roleId==='1'){
+      this.toast.info("the red * marks a required fields","",)
+    }
+    else{
+      this.router.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
+
   }
+
+
 
 }

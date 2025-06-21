@@ -11,4 +11,5 @@ public interface OffreService {
     public String deleteOffre(Integer id);
     public List<Offre> getOffre();
     public Offre getOffreById(Integer id);
+    public List<Offre> getOffresByDestinationId(Integer id);
 }

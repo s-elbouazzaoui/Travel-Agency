@@ -1,7 +1,9 @@
 package com.example.travel.Services.Implementation;
 
 
+import com.example.travel.Entities.Roles;
 import com.example.travel.Entities.User;
+import com.example.travel.Repositories.RolesRepository;
 import com.example.travel.Repositories.UserRepository;
 import com.example.travel.Services.Interface.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.Role;
 import java.util.List;
 @Data
 @Service
@@ -20,8 +23,10 @@ public class UserServiceImpl implements UserService {
 
 
     private final UserRepository userRepository;
-    public UserServiceImpl(UserRepository userRepository) {
+    private final RolesRepository rolesRepository;
+    public UserServiceImpl(UserRepository userRepository, RolesRepository rolesRepository) {
         this.userRepository = userRepository;
+        this.rolesRepository = rolesRepository;
 
     }
     @Override
@@ -97,6 +102,23 @@ public class UserServiceImpl implements UserService {
         }
         else{
             return user;
+        }
+    }
+
+
+    @Override
+    public String register(User user){
+
+        if(user.getEmail() == null || user.getEmail().isEmpty()  || user.getPassword()==null
+                || user.getPassword().isEmpty() ||user.getName()==null || user.getName().isEmpty()) {
+            return "error";
+        }
+        else {
+            Roles role = new Roles();
+            role.setId(2);
+            user.setRole(role);
+            userRepository.save(user);
+            return "success";
         }
     }
 }

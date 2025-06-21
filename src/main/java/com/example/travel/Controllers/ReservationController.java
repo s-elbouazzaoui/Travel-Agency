@@ -59,11 +59,13 @@ public class ReservationController {
         Map<String,String> response = new HashMap<>();
         if(result.equals("date or places error")){
             response.put("message", "date error");
+            return ResponseEntity.badRequest().body(response);
         }
         else{
             response.put("message", "pass ig");
+            return ResponseEntity.ok().body(response);
         }
-        return ResponseEntity.ok().body(response);
+
 
     }
 
@@ -87,11 +89,13 @@ public class ReservationController {
         Map<String,String> response = new HashMap<>();
         if(result.equals("success")){
             response.put("message", "success");
+            return ResponseEntity.ok().body(response);
         }
         else{
             response.put("message", "fail");
+            return ResponseEntity.badRequest().body(response);
         }
-        return ResponseEntity.ok().body(response);
+
     }
 
     @PutMapping("/approve/{id}")

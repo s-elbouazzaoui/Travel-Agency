@@ -19,6 +19,7 @@ export class UpdateroleComponent implements OnInit {
 
   role: Roles = new Roles();
   roleId!:number
+  initRoleId:any
 
 
   constructor(private router: Router,private toast:ToastrService,private roleService:RoleServiceService,private route:ActivatedRoute) {
@@ -64,7 +65,16 @@ loadRoleInfo(id:number):void{
 
 
   ngOnInit(): void {
-    this.roleId = this.route.snapshot.params['id']
-    this.loadRoleInfo(this.roleId)
+
+    this.initRoleId = sessionStorage.getItem('userRole')
+    if (this.initRoleId==='1'){
+      this.roleId = this.route.snapshot.params['id']
+      this.loadRoleInfo(this.roleId)
+    }
+    else{
+      this.router.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
+
   }
 }

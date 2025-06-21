@@ -32,6 +32,8 @@ export class DestinationlistAdminComponent implements OnInit {
   modalRef?: BsModalRef
   contentMove=false;
 
+  roleId:any
+
   constructor(private router: Router, private modalService: BsModalService,private toast:ToastrService,private destinationService: DestinationService) {
   }
 
@@ -97,7 +99,15 @@ export class DestinationlistAdminComponent implements OnInit {
     this.router.navigate(['/addoffre', id])
   }
   ngOnInit(): void {
-    this.loadDestinations();
+    this.roleId = sessionStorage.getItem('userRole')
+    if (this.roleId==='1'){
+      this.loadDestinations();
+    }
+    else{
+      this.router.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
+
   }
 }
 

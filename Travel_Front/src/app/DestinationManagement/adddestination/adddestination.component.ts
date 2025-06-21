@@ -25,6 +25,7 @@ export class AdddestinationComponent implements OnInit {
   destination: Destination = new Destination();
   selectedFile: File | null = null;
   img: File | null = null;
+  roleId!:any
 
   dateFormat: Partial<BsDatepickerConfig> = {
     dateInputFormat: 'DD/MM/YYYY'
@@ -110,6 +111,14 @@ export class AdddestinationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.roleId = sessionStorage.getItem('userRole')
+    if (this.roleId==='1'){
+
+    }
+    else{
+      this.router.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
 
   }
 }

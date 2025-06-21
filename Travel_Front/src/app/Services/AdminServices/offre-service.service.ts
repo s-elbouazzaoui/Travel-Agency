@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Offre} from '../../Models/Offre.model';
 
@@ -35,6 +35,11 @@ export class OffreServiceService {
 
   getAllOffres() : Observable<Offre[]>{
     return this.http.get<Offre[]>(`${this.apiUrl}`);
+  }
+  getOffresByDestinationId(id:number):Observable<Offre[]>{
+    const params = new HttpParams()
+      .set('id', id)
+    return this.http.get<Offre[]>(`${this.apiUrl}/offresbydestination`,{params});
   }
 
 

@@ -22,6 +22,7 @@ export class UpdatedestinationComponent implements OnInit {
   selectedFile: File | null = null;
   img: File | null = null;
   desId!:number;
+  roleId:any
   dateFormat: Partial<BsDatepickerConfig> = {
     dateInputFormat: 'DD/MM/YYYY'
   };
@@ -111,8 +112,17 @@ export class UpdatedestinationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.desId=this.route.snapshot.params['id'];
-    this.loadDestination(this.desId)
+    this.roleId = sessionStorage.getItem('userRole')
+    if (this.roleId==='1'){
+      this.desId=this.route.snapshot.params['id'];
+      this.loadDestination(this.desId)
+    }
+    else{
+      this.router.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
+
+
 
   }
 }

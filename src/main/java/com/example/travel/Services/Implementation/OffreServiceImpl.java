@@ -80,4 +80,10 @@ public class OffreServiceImpl implements OffreService {
         assert offre != null;
         return offre;
     }
+
+    @Override
+    public List<Offre> getOffresByDestinationId(Integer id) {
+
+        return offreRepository.getOffreByDestinationId(id);
+    }
 }

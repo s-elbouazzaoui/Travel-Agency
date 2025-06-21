@@ -110,4 +110,19 @@ public class UserController {
     }
 
 
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        Map<String,String> response = new HashMap<>();
+        String result = userService.register(user);
+        if(result.equals("success")) {
+            response.put("message", "User registered successfully");
+            return ResponseEntity.ok().body(response);
+        }
+        else {
+            response.put("message", "Error registering user");
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+
 }

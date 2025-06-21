@@ -16,7 +16,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
         FilterPipe,
         FormsModule,
         NgForOf,
-        RouterLink,
+
         SidenavComponent
     ],
   templateUrl: './offrelist.component.html',
@@ -29,8 +29,9 @@ export class OffrelistComponent implements OnInit{
   contentMove=false;
   modalRef?: BsModalRef
   offreId!:number
+  roleId:any
 
-  constructor(private route:Router,private modalService: BsModalService,private toast:ToastrService,private offreService:OffreServiceService) {
+  constructor(private route:Router,private modalService: BsModalService,private offreService:OffreServiceService,private toast:ToastrService) {
   }
 
 
@@ -76,15 +77,25 @@ export class OffrelistComponent implements OnInit{
 
 
   navigateToUpdate(id: number) {
-    this.route.navigate(['/updaterole', id])
+    this.route.navigate(['/updateoffre', id])
   }
   addOffre(){
     this.route.navigate(['/destinations-admin'])
-    this.toast.info("Click on the create offer button linked to the destination desired")
+    this.toast.info("Click on the create offer button linked to the destination desired","",{
+      positionClass:"toast-top-center"
+    })
   }
 
   ngOnInit() {
-    this.loadOffres();
+    this.roleId = sessionStorage.getItem('userRole')
+    if (this.roleId==='1'){
+      this.loadOffres();
+    }
+    else{
+      this.route.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
+
   }
 
 }

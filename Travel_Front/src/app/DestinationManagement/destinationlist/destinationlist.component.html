@@ -1,5 +1,5 @@
 
-  <app-sidenav (click)="contentMove=!contentMove" [class.expanded]="contentMove"></app-sidenav>
+  <app-user-side-bar (click)="contentMove=!contentMove" [class.expanded]="contentMove"></app-user-side-bar>
   <div class="main-content">
     <nav class="navbar">
       <span>Welcome Costumer</span>
@@ -34,7 +34,7 @@
 
           </div>
           <div style="display: flex; justify-content: center; padding: .75rem 1rem;">
-            <app-button-booking [label]="'booking'"></app-button-booking>
+            <app-button-booking [label]="'booking'" (click)="booking(des.id)"></app-button-booking>
           </div>
 
         </div>

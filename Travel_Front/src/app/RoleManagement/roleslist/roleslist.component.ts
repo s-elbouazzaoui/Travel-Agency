@@ -24,6 +24,7 @@ export class RoleslistComponent implements OnInit {
   contentMove=false
 
   modalRef?: BsModalRef
+  initroleId:any
 
   constructor(private router: Router,private modalService: BsModalService,private toast:ToastrService,private roleService:RoleServiceService) {
   }
@@ -75,6 +76,15 @@ export class RoleslistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadRoles()
+
+    this.initroleId = sessionStorage.getItem('userRole')
+    if (this.initroleId==='1'){
+      this.loadRoles()
+    }
+    else{
+      this.router.navigate(['/home'])
+      this.toast.warning("Normal users are not allowed to visit the admin section")
+    }
+
   }
 }

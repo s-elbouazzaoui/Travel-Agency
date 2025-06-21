@@ -8,16 +8,16 @@ import {DestinationService} from '../../Services/AdminServices/destination.servi
 import {SidenavComponent} from '../../../lib/sidenav/sidenav.component';
 import {FilterPipe} from '../../Filter/filter.pipe';
 import {FormsModule} from '@angular/forms';
+import {UserSideBarComponent} from '../../../lib/user-side-bar/user-side-bar.component';
 
 @Component({
   selector: 'app-destinationlist',
   imports: [
     NgForOf,
     ButtonBookingComponent,
-
-    SidenavComponent,
     FilterPipe,
-    FormsModule
+    FormsModule,
+    UserSideBarComponent
 
   ],
   templateUrl: './destinationlist.component.html',
@@ -55,6 +55,11 @@ export class DestinationlistComponent implements OnInit{
         destination.lieu.toLowerCase().includes(this.searchtext.toLowerCase())
       );
     }
+  }
+
+  booking(id:number){
+    this.router.navigate(['/addreservation', id])
+
   }
 
 

@@ -2,18 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {BsDatepickerConfig, BsDatepickerDirective, BsDatepickerInputDirective} from "ngx-bootstrap/datepicker";
 import {Form, FormsModule} from "@angular/forms";
 import {Offre} from '../../Models/Offre.model';
-import {ActivatedRoute, Route} from '@angular/router';
+import {ActivatedRoute, Route, RouterLink} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {OffreServiceService} from '../../Services/AdminServices/offre-service.service';
 import {Destination} from '../../Models/Destination.model';
 
 @Component({
   selector: 'app-addoffre',
-    imports: [
-        BsDatepickerDirective,
-        BsDatepickerInputDirective,
-        FormsModule
-    ],
+  imports: [
+    BsDatepickerDirective,
+    BsDatepickerInputDirective,
+    FormsModule,
+    RouterLink
+  ],
   templateUrl: './addoffre.component.html',
   styleUrl: './addoffre.component.scss'
 })

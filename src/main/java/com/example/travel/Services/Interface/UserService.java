@@ -13,6 +13,7 @@ public interface UserService {
     public User getUser(Integer id);
 
     public User getUserLogs(String email,String password);
+    public String register(User user);
 
 
 

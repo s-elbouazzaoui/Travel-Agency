@@ -32,6 +32,11 @@ public class OffreController {
         return ResponseEntity.ok(offreService.getOffreById(id));
     }
 
+    @GetMapping("/offresbydestination")
+    public ResponseEntity<List<Offre>> findOffresByDestinationId(@RequestParam("id") Integer id) {
+        return ResponseEntity.ok(offreService.getOffresByDestinationId(id));
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> addOffre(@RequestBody Offre offre) {
         String result = offreService.addOffre(offre);

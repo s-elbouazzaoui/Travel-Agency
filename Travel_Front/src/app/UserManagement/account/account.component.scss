@@ -1,4 +1,59 @@
+.main-content {
+  margin-top: 60px;
+  margin-left: 70px;
+  transition: margin-left 0.3s ease-in-out;
+}
 
+app-user-side-bar.expanded + .main-content .navbar  {
+  left: 300px;
+}
+app-user-side-bar.expanded + .main-content .parent {
+  margin-left: 230px; /* Adjust this value as needed */
+  transition: margin-left 0.3s ease 0.1s;
+}
+
+.parent{
+  display: flex;
+  justify-content: center;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 5px;
+  left: 70px;
+  right: 5px;
+  background-color: #e3f2fd;
+  border-radius: 15px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  transition: left 0.3s ease 0.1s;
+}
+
+.navbar .form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.navbar input[type="search"] {
+  border-radius: 25px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+
+.navbar i {
+  font-size: 25px;
+}
+
+/* Right Button Section */
+.right {
+  text-align: right;
+  margin-right: 10px;
+}
 
 
 body {
@@ -49,8 +104,7 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="password"],
-input[type="number"]{
+input[type="password"] {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -149,3 +203,4 @@ input[type="number"]{
 .center{
   text-align: center;
 }
+

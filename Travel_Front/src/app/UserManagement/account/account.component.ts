@@ -1,31 +1,39 @@
 import {Component, OnInit} from '@angular/core';
-import {FormsModule, NgForm} from '@angular/forms';
+import {FormsModule, NgForm, ReactiveFormsModule} from '@angular/forms';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {UserSideBarComponent} from '../../../lib/user-side-bar/user-side-bar.component';
 import {User} from '../../Models/User.model';
-import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {UserserviceAdminService} from '../../Services/AdminServices/userservice-admin.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-update-user',
+  selector: 'app-account',
   imports: [
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    UserSideBarComponent
   ],
-  templateUrl: './update-user.component.html',
-  styleUrl: './update-user.component.scss'
+  templateUrl: './account.component.html',
+  styleUrl: './account.component.scss'
 })
-export class UpdateUserComponent implements OnInit{
+export class AccountComponent implements OnInit{
 
 
-  userid!:number;
+  userid:any;
   user:User = new User();
   isUser:boolean=false;
   passConfirm !:string;
   roleId:any
+  showModal = false;
+  modalRef?: BsModalRef
+  contentMove=false
 
   constructor(private route:ActivatedRoute,
               private router : Router,
               private toast:ToastrService,
-              private userService:UserserviceAdminService
+              private userService:UserserviceAdminService,
+              private modalService: BsModalService,
   ){}
 
   loadUserInfo(id:number):void{
@@ -52,17 +60,11 @@ export class UpdateUserComponent implements OnInit{
       if(!this.confirmPassword())
         return;
       else{
-        if(this.isUser){
-          this.user.role.id=1;
-        }
-        else{
-          this.user.role.id=2
-        }
-        console.log("user role "+this.user.role);
+
         this.userService.updateUser(this.user,this.userid).subscribe({
           next :()=>{
             this.toast.success("User Updated successfully");
-            this.router.navigate(['/users']);
+            this.closeModal();
           },
           error:(err)=>{
             this.toast.error("Error while inserting the user");
@@ -73,9 +75,47 @@ export class UpdateUserComponent implements OnInit{
     }
 
   }
-  cancel(){
-    this.router.navigate(['/users'])
+
+
+  openModal(template: any) {
+    this.modalRef = this.modalService.show(template);
+    this.toast.info("the red * marks a required fields","",{
+      toastClass:'fields-warning'
+    })
   }
+
+  openDeleteModal(template: any) {
+    this.modalRef = this.modalService.show(template);
+    this.toast.error("this action is irreversible","",{
+      toastClass:'fields-warning'
+    })
+  }
+
+
+
+  // Closes the modal without saving
+  closeModal(): void {
+    this.modalRef?.hide();
+  }
+
+  confirmAction() {
+    this.userService.deleteUser(this.userid).subscribe({
+      next:()=>{
+        this.toast.success("Deleted successfully","Your account has been deleted with all your data");
+        this.router.navigate([''])
+      }
+    })
+    console.log('Action confirmed');
+    this.modalRef?.hide(); // Close the modal
+
+  }
+
+  // Method to handle cancel
+  cancelAction() {
+    console.log('Action cancelled');
+    this.modalRef?.hide(); // Close the modal
+  }
+
 
 
   confirmPassword(){
@@ -96,17 +136,8 @@ export class UpdateUserComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.roleId = sessionStorage.getItem('userRole')
-    if (this.roleId==='1'){
-      this.userid = this.route.snapshot.params['id']
-      this.loadUserInfo(this.userid);
-    }
-    else{
-      this.router.navigate(['/home'])
-      this.toast.warning("Normal users are not allowed to visit the admin section")
-    }
-
-
+    this.userid = sessionStorage.getItem('userId')
+    this.loadUserInfo(this.userid)
   }
 
 

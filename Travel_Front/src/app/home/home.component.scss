@@ -6,13 +6,24 @@
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 11px;
+  transition: margin-left 0.3s ease-in-out;
+
 }
 
+app-user-side-bar{
+  position: relative;
+  z-index: 10;
+}
+
+app-user-side-bar.expanded + .parent {
+  margin-left: 230px; /* Adjust this value as needed */
+  transition: margin-left 0.3s ease 0.1s;
+  z-index: 10;
+}
 
 .div2 {
-  height: 800px;
+  height: 400px;
   text-align: center;
-  border: black solid 1px;
   padding: 10px;
   grid-column: span 2 / span 2;
   grid-row: span 5 / span 5;
@@ -24,9 +35,8 @@
   align-items: center;
 }
 .div3 {
-  height: 800px;
+  height: 400px;
   text-align: center;
-  border: black solid 1px;
   padding: 10px;
 
   grid-column: span 2 / span 2;
@@ -35,9 +45,8 @@
 }
 
 .div4 {
-  height: 800px;
+  height: 400px;
   text-align: center;
-  border: black solid 1px;
   padding: 10px;
   grid-column: span 2 / span 2;
   grid-row: span 2 / span 2;
@@ -46,3 +55,263 @@
 
 
 
+
+
+
+
+
+/* From Uiverse.io by gharsh11032000 */
+.card-ui {
+  position: relative;
+  width: 220px;
+  height: 280px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card-ui::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -5px;
+  margin: auto;
+  width: 200px;
+  height: 264px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-ui::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+.heading {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 700;
+  color: white;
+}
+
+.card-ui p:not(.heading) {
+  font-size: 14px;
+}
+
+.card-ui p:last-child {
+  color: #e81cff;
+  font-weight: 600;
+}
+
+.card-ui:hover::after {
+  filter: blur(30px);
+}
+
+.card-ui:hover::before {
+  transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+}
+
+
+
+
+.review{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100px;
+  height: 90px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+}
+.heading {
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.bottom-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bottom-wrapper .star {
+  width: 30px;
+  fill: gold;
+}
+.bottom-wrapper .tag {
+  width: 27px;
+  fill: rgb(141, 214, 32);
+}
+.bottom-wrapper .thumb {
+  width: 27px;
+  fill: blueviolet;
+}
+.bottom-wrapper p {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CSS */
+.sky-banner {
+  position: relative;
+  height: 150px;                  /* increased from 50px */
+  background: #87ceeb;            /* sky blue */
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* generic cloud styling */
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.9;
+  filter: blur(1px);
+  animation: fly 8s linear infinite;
+
+}
+
+/* each cloud at a different vertical position and size */
+.cloud--one {
+  width: 120px; height: 35px;
+  top:  15px;                    /* near top */
+  left: -150px;
+  animation-duration: 12s;
+}
+.cloud--one2 {
+  width: 120px; height: 35px;
+  top:  35px;                    /* near top */
+  left: -150px;
+  animation-duration: 20s;
+}
+.cloud--one3 {
+  width: 120px; height: 35px;
+  top:  25px;                    /* near top */
+  left: -150px;
+  animation-duration: 25s;
+}
+.cloud--two {
+  width: 160px; height: 45px;
+  top:  65px;                    /* middle */
+  left: -200px;
+  animation-duration: 15s;
+}
+.cloud--two2 {
+  width: 160px; height: 45px;
+  top:  65px;                    /* middle */
+  left: -200px;
+  animation-duration: 30s;
+}
+.cloud--two3 {
+  width: 160px; height: 45px;
+  top:  65px;                    /* middle */
+  left: -200px;
+  animation-duration: 40s;
+}
+.cloud--three {
+  width: 100px; height: 30px;
+  top: 115px;                    /* near bottom */
+  left: -120px;
+  animation-duration: 20s;
+}
+.cloud--four {
+  width: 100px; height: 30px;
+  top: 115px;                    /* near bottom */
+  left: -120px;
+  animation-duration: 30s;
+}
+.cloud--five {
+  width: 100px; height: 30px;
+  top: 130px;                    /* near bottom */
+  left: -120px;
+  animation-duration: 35s;
+}
+.cloud--six {
+  width: 100px; height: 30px;
+  top: 95px;                    /* near bottom */
+  left: -120px;
+  animation-duration: 40s;
+}
+.cloud--six2 {
+  width: 100px; height: 30px;
+  top: 95px;                    /* near bottom */
+  left: -120px;
+  animation-duration: 25s;
+}
+
+
+/* plane flies straight across, centered vertically */
+.plane {
+  position: absolute;
+  top:  50%;                     /* vertically center */
+  left: -60px;                   /* start just off-screen */
+  width: 60px;
+  transform: translateY(-50%);   /* truly center by pulling itself up half its own height */
+  animation: fly 15s linear infinite;
+}
+
+@keyframes fly {
+  from { transform: translate(-60px, -50%); }
+  to   { transform: translate(calc(100vw + 60px), -50%); }
+}

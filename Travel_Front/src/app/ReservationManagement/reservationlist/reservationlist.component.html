@@ -30,6 +30,7 @@
         <th>Offre ID</th>
         <th>delete</th>
         <th>update</th>
+        <th>cancel</th>
         </thead>
         <tbody>
         <tr *ngFor="let res of reservations " >
@@ -58,6 +59,14 @@
                     [ngStyle]="{ 'color': (res.status === 'REJECTED' || res.status === 'CANCELLED' || res.status==='APPROVED') ? 'gray' : '' }"
                     (click)="navigateToUpdate(res.id)">
               <i class="bi bi-pencil-square"></i>
+            </button>
+          </td>
+          <td>
+            <button class="action-button"
+                    [disabled]="res.status === 'REJECTED' || res.status === 'CANCELLED' || res.status==='APPROVED' "
+                    [ngStyle]="{ 'color': (res.status === 'REJECTED' || res.status === 'CANCELLED' || res.status==='APPROVED') ? 'gray' : '' }"
+                    (click)="cancel(res.id)">
+              <i class="bi bi-dash-circle"></i>
             </button>
           </td>
 

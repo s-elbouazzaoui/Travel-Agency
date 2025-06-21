@@ -17,14 +17,16 @@
 
       <div class="form-wrapper">
         <label for="">Email</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" name="email" [(ngModel)]="email">
       </div>
       <div class="form-wrapper">
         <label for="">Password</label>
-        <input type="password" class="form-control">
+        <input type="password" class="form-control" name="password" [(ngModel)]="password">
       </div>
 
-      <app-button-booking [label]="'Login'" class="button"></app-button-booking>
+      <app-button-booking [label]="'Login'" class="button" (click)="login(email,password)"></app-button-booking>
+
+      <a routerLink="/registration" style="display: flex;align-items:center"> new user? register</a>
 
     </form>
   </div>

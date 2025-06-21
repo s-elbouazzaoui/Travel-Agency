@@ -7,9 +7,9 @@
 </head>
 <body>
 <div class="form-container">
-  <h2>Destination Details</h2>
+  <h2>Reservation Details</h2>
   <p>Fill all the required fields to proceed</p>
-  <form (ngSubmit)="updateReservation(reservationForm)" #reservationForm="ngForm" novalidate autocomplete="off">
+  <form (ngSubmit)="addReservation(reservationForm)" #reservationForm="ngForm" novalidate autocomplete="off">
     <div class="form-group">
       <label>Nombre de place <span style="color: red; font: bold;">*</span></label>
       <input type="number" required name="nombrePlace" min="1" [(ngModel)]="reservation.nombrePlace" (ngModelChange)="calcul()" >
@@ -30,27 +30,27 @@
                [(ngModel)]="reservation.dateReservation"
         >
       </div>
-      <div class="form-group">
-        <div style="display: flex; justify-content: space-between" >
-          <div>
-            <label>Montant <span style="color: red; font: bold;">*</span></label>
-            <input type="number" [disabled]="true" id="montant" name="montant" [(ngModel)]="reservation.montant"  >
-          </div>
-
-
-          <div>
-            <label for="offerSelect">Select Offer</label>
-            <select id="offerSelect" name="selectedOffre" [(ngModel)]="selectedOffre"  (change)="onOfferSelect()">
-              <option value="" >None</option>
-              <option *ngFor="let o of offres" [value]="o.id">
-                {{o.libelle}} : {{o.pourcentage}}% | {{o.nombrePlace}} places disponibles
-              </option>
-            </select>
-          </div>
-
-
+    <div class="form-group">
+      <div style="display: flex; justify-content: space-between" >
+        <div>
+          <label>Montant <span style="color: red; font: bold;">*</span></label>
+          <input type="number" [disabled]="true" id="montant" name="montant" [(ngModel)]="reservation.montant" >
         </div>
+
+
+        <div>
+          <label for="offerSelect">Select Offer</label>
+          <select id="offerSelect" name="selectedOffre" [(ngModel)]="selectedOffre" (change)="onOfferSelect()">
+            <option value="" >None</option>
+            <option *ngFor="let o of offres" [value]="o.id">
+              {{o.libelle}} : {{o.pourcentage}}% | {{o.nombrePlace}} places disponibles
+            </option>
+          </select>
+        </div>
+
+
       </div>
+    </div>
 
 
 
@@ -59,7 +59,7 @@
 
     <div class="center">
       <button class="btn-submit" type="submit" (click)="onOfferSelect()"><i class="bi bi-bookmark-check">Submit</i></button>
-      <button style="margin-left: 10px;" class="btn-submit" type="button"><i class="bi bi-bookmark-dash" routerLink="/mesreservations">Cancel</i></button>
+      <button style="margin-left: 10px;" class="btn-submit" type="button"><i class="bi bi-bookmark-dash" routerLink="/destinations-admin">Cancel</i></button>
     </div>
   </form>
 </div>
