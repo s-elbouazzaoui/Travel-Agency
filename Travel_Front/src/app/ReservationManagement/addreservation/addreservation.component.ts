@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {BsDatepickerConfig, BsDatepickerDirective, BsDatepickerInputDirective} from "ngx-bootstrap/datepicker";
 import {FormsModule} from "@angular/forms";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, RouterLink,Router} from "@angular/router";
 import {Reservation} from '../../Models/Reservation.model';
 import {Offre} from '../../Models/Offre.model';
 import {OffreServiceService} from '../../Services/AdminServices/offre-service.service';
@@ -34,7 +34,8 @@ export class AddreservationComponent implements OnInit,OnChanges{
   selectedOffre!:number |null ;
 
   constructor(private offreService : OffreServiceService,private route:ActivatedRoute,private destinationService : DestinationService,
-              private toast:ToastrService,private resService:ReservationService) {
+              private toast:ToastrService,private resService:ReservationService,
+              private route2 :Router) {
   }
 
 
@@ -81,6 +82,7 @@ export class AddreservationComponent implements OnInit,OnChanges{
       this.resService.addRes(this.reservation).subscribe({
         next:()=>{
           this.toast.success("reservation added")
+          this.route2.navigate(['/mesreservations'])
         },
         error:(err)=>{
           this.toast.error("error while bookin")
@@ -102,6 +104,7 @@ export class AddreservationComponent implements OnInit,OnChanges{
         this.resService.addRes(this.reservation).subscribe({
           next:()=>{
             this.toast.success("reservation added")
+            this.route2.navigate(['/mesreservations'])
           },
           error:(err)=>{
             this.toast.error("error while booking")

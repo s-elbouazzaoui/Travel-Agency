@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BsDatepickerConfig, BsDatepickerDirective, BsDatepickerInputDirective} from "ngx-bootstrap/datepicker";
 import {FormsModule} from "@angular/forms";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, RouterLink,Router} from "@angular/router";
 import {Offre} from '../../Models/Offre.model';
 import {ToastrService} from 'ngx-toastr';
 import {OffreServiceService} from '../../Services/AdminServices/offre-service.service';
@@ -29,7 +29,7 @@ export class UpdateoffreComponent implements OnInit {
     dateInputFormat: 'DD/MM/YYYY'
   };
 
-  constructor(private toast: ToastrService, private offreService: OffreServiceService, private router: ActivatedRoute) {
+  constructor(private toast: ToastrService, private offreService: OffreServiceService, private router: ActivatedRoute, private route : Router) {
   }
 
   loadOffre(id:number){
@@ -50,6 +50,7 @@ export class UpdateoffreComponent implements OnInit {
       this.offreService.updateOffre(this.offre,this.offreId).subscribe({
         next: () => {
           this.toast.success("Offer updated successfully")
+          this.route.navigate(['/offres'])
         }
       })
       console.log("type of date:" + this.offre.dateDebut)

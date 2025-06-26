@@ -11,4 +11,5 @@ public interface OffreRepository extends JpaRepository<Offre, Integer> {
 
     @Query("select o from Offre o where o.destination.id =:id")
     List<Offre> getOffreByDestinationId(@Param("id") Integer id);
+
 }

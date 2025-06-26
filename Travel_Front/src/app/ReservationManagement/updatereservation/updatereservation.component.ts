@@ -3,7 +3,7 @@ import {Reservation} from '../../Models/Reservation.model';
 import {Offre} from '../../Models/Offre.model';
 import {Destination} from '../../Models/Destination.model';
 import {OffreServiceService} from '../../Services/AdminServices/offre-service.service';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, RouterLink,Router} from '@angular/router';
 import {DestinationService} from '../../Services/AdminServices/destination.service';
 import {ToastrService} from 'ngx-toastr';
 import {ReservationService} from '../../Services/AdminServices/reservation.service';
@@ -29,11 +29,11 @@ export class UpdatereservationComponent implements OnInit {
   resID!:number;
   userId: any;
   destination: Destination = new Destination()
-  //selectedOffer: Offre = new Offre()
+  selectedOffer: Offre = new Offre()
   selectedOffre!: number | null;
 
   constructor(private offreService: OffreServiceService, private route: ActivatedRoute, private destinationService: DestinationService,
-              private toast: ToastrService, private resService: ReservationService) {
+              private toast: ToastrService, private resService: ReservationService,private router :Router) {
   }
 
 
@@ -70,8 +70,11 @@ export class UpdatereservationComponent implements OnInit {
         this.loadOffers(this.destinationId)
         this.loadDestination(this.destinationId)
         if (data.offre?.id) {
-          this.selectedOffre = data.offre?.id
-          this.onOfferSelect();
+            console.log("we have the offre id here : "+data.offre?.id )
+            console.log("Montant is  : "+data.montant )
+        this.selectedOffre = data.offre?.id;
+        this.reservation.montant = data.montant;
+        this.onOfferSelect();
         }
         else
           this.reservation.montant = data.montant
@@ -95,7 +98,8 @@ export class UpdatereservationComponent implements OnInit {
 
       this.resService.updateRes(this.reservation,this.resID).subscribe({
         next: () => {
-          this.toast.success("reservation added")
+          this.toast.success("reservation updated")
+          this.router.navigate(['/mesreservations'])
         },
         error: (err) => {
           this.toast.error("error while bookin")
@@ -115,6 +119,7 @@ export class UpdatereservationComponent implements OnInit {
         this.resService.updateRes(this.reservation,this.resID).subscribe({
           next: () => {
             this.toast.success("reservation added")
+            this.router.navigate(['/mesreservations'])
           },
           error: (err) => {
             this.toast.error("error while booking")

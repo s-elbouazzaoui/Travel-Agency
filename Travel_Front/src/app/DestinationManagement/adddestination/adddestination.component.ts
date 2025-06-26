@@ -81,7 +81,7 @@ export class AdddestinationComponent implements OnInit {
             this.destinationService.addDestination(this.destination, imgFile).subscribe(
               response => {
                 this.toast.success("destination added successfully");
-                this.router.navigate(['/destinations']);
+                this.router.navigate(['/destinations-admin']);
               },
               error => {
                 this.toast.error('Error adding destination', error);
@@ -94,8 +94,8 @@ export class AdddestinationComponent implements OnInit {
       } else {
         this.destinationService.addDestination(this.destination, this.img).subscribe(
           response => {
-            this.toast.success("Product added successfully");
-            this.router.navigate(['/destinations']);
+            this.toast.success("Destination added successfully");
+            this.router.navigate(['/destinations-admin']);
           },
           error => {
             this.toast.error('Error adding destination', error);

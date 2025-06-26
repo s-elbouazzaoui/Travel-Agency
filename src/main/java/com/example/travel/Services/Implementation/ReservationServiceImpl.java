@@ -53,6 +53,7 @@ public class ReservationServiceImpl implements ReservationService {
                         prixTotal = reservation.getNombrePlace() * destination.getPrix();
                         double discount = (offre.getPourcentage()/100.0);
                         prixTotal -= prixTotal*discount;
+                        //prixTotal = prixTotal - (prixTotal * discount)
                         reservation.setMontant((long) prixTotal);
                     } else {
                         prixTotal = reservation.getNombrePlace() * destination.getPrix();

@@ -63,16 +63,4 @@ public class FileStorageService {
             throw new RuntimeException("File not found " + fileName, e);
         }
     }
-
-    /**
-     * Delete file (optional).
-     */
-    public void deleteFile(String fileName) {
-        try {
-            Path filePath = this.rootLocation.resolve(fileName).normalize();
-            Files.deleteIfExists(filePath);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not delete file " + fileName, e);
-        }
-    }
 }

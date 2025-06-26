@@ -6,6 +6,8 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ToastrService} from 'ngx-toastr';
 import {UserserviceAdminService} from '../../Services/AdminServices/userservice-admin.service';
 import {SidenavComponent} from '../../../lib/sidenav/sidenav.component';
+import {FormsModule} from '@angular/forms';
+import {FilterPipe} from '../../Filter/filter.pipe';
 // import { BsModalService,BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -14,7 +16,9 @@ import {SidenavComponent} from '../../../lib/sidenav/sidenav.component';
     RouterLink,
     NgForOf,
     NgIf,
-    SidenavComponent
+    FilterPipe,
+    SidenavComponent,
+    FormsModule
   ],
   templateUrl: './userslist.component.html',
   styleUrl: './userslist.component.scss'
@@ -27,6 +31,7 @@ export class UserslistComponent implements OnInit {
   contentMove=false;
 
   roleId:string|null='';
+  searchtext : any;
 
   initRoleId:any
 
