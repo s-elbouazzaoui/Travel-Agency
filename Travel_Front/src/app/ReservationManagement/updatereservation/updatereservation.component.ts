@@ -30,7 +30,9 @@ export class UpdatereservationComponent implements OnInit {
   userId: any;
   destination: Destination = new Destination()
   selectedOffer: Offre = new Offre()
-  selectedOffre!: number | null;
+  selectedOffre: number | null = null;
+
+  selectedOffreId: number | null = null;
 
   constructor(private offreService: OffreServiceService, private route: ActivatedRoute, private destinationService: DestinationService,
               private toast: ToastrService, private resService: ReservationService,private router :Router) {
@@ -60,29 +62,56 @@ export class UpdatereservationComponent implements OnInit {
     console.log('Updated Montant without offer:', this.reservation.montant);
   }
 
+
+
   loadReservation(id: number) {
     this.resService.getResById(id).subscribe({
-      next: (data) => {
+      next: data => {
         this.reservation = data;
+        // stash the incoming offer ID for the <select>
         this.reservation.montant = data.montant
-        this.destinationId = data.destination.id
-        console.log("des id : " + this.destinationId)
-        this.loadOffers(this.destinationId)
-        this.loadDestination(this.destinationId)
-        if (data.offre?.id) {
-            console.log("we have the offre id here : "+data.offre?.id )
-            console.log("Montant is  : "+data.montant )
-        this.selectedOffre = data.offre?.id;
-        this.reservation.montant = data.montant;
-        this.onOfferSelect();
-        }
-        else
-          this.reservation.montant = data.montant
-          this.selectedOffre = null
-      }
+        this.selectedOffre = data.offre?.id ?? null;
 
-    })
+
+
+        // now load the offers for that destination
+        this.destinationId = data.destination.id;
+        this.loadDestination(this.destinationId)
+        this.loadOffers(this.destinationId);
+      }
+    });
   }
+
+  // loadReservation(id: number) {
+  //   this.resService.getResById(id).subscribe({
+  //     next: (data) => {
+  //       this.reservation = data;
+  //       this.reservation.montant = data.montant
+  //       this.destinationId = data.destination.id
+  //       console.log("des id : " + this.destinationId)
+  //       this.loadOffers(this.destinationId)
+  //       this.loadDestination(this.destinationId)
+  //       if (data.offre?.id) {
+  //         this.reservation.montant = data.montant;
+  //         console.log("montant is : "+ this.reservation.montant);
+  //           console.log("we have the offre id here : "+data.offre?.id )
+  //           console.log("Montant is  : "+data.montant )
+  //
+  //       this.selectedOffre = data.offre.id;
+  //
+  //           /** here i need to find a way in order to put the id of the
+  //            * role in the reservation.role.id so it will be displayed in the select option*/
+  //       this.reservation.montant = data.montant;
+  //
+  //       }
+  //       else
+  //         this.reservation.montant = data.montant
+  //         this.selectedOffre = null
+  //     }
+  //
+  //   })
+  //
+  // }
 
 
   updateReservation(form: any) {
@@ -118,7 +147,7 @@ export class UpdatereservationComponent implements OnInit {
         console.log("the res sent : " + this.reservation)
         this.resService.updateRes(this.reservation,this.resID).subscribe({
           next: () => {
-            this.toast.success("reservation added")
+            this.toast.success("reservation updated")
             this.router.navigate(['/mesreservations'])
           },
           error: (err) => {

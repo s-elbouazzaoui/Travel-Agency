@@ -41,7 +41,7 @@
           <div>
             <label for="offerSelect">Select Offer</label>
             <select id="offerSelect" name="selectedOffre" [(ngModel)]="selectedOffre"  (change)="onOfferSelect()">
-              <option value="" >None</option>
+              <option value="" [ngValue]="null" >None</option>
               <option *ngFor="let o of offres" [value]="o.id">
                 {{o.libelle}} : {{o.pourcentage}}% | {{o.nombrePlace}} places disponibles
               </option>
